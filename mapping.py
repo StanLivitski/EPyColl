@@ -268,6 +268,11 @@ class ImmutableMap(IReversibleMap):
         Reverse this mapping to map values to keys, if the underlying
         mapping is an `IReversibleMap`.
  
+    Raises
+    ----------
+    TypeError
+        If an attempt is made to change or delete an item.
+
     Examples
     --------
     >>> map = ImmutableMap({'access': 'code'})
@@ -294,6 +299,7 @@ class ImmutableMap(IReversibleMap):
     ...
     TypeError: Mapping of type 'dict' is not reversible
     """
+
     def _readOnlyAttr(self, name, *value):
         if name in {'_mapping', '_reverse'}:
             raise AttributeError(name + " is a read-only attribute")
